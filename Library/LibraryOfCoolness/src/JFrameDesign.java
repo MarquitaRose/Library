@@ -29,6 +29,8 @@ public class JFrameDesign extends JFrame {
 	}
 	
 	private void initUI(){ 
+		DrawStuff panel = new DrawStuff();
+		add(panel);
     Toolkit tk = Toolkit.getDefaultToolkit();
     int SWidth = ((int) tk.getScreenSize().getWidth());
     int SHeight = ((int) tk.getScreenSize().getHeight());
