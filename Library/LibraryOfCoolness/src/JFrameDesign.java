@@ -15,6 +15,8 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import panels.CatalogHome;
+
 @SuppressWarnings("serial")
 public class JFrameDesign extends JFrame {
 	
@@ -22,9 +24,7 @@ public class JFrameDesign extends JFrame {
 
 	public JFrameDesign(){
 		initUI();
-		
 	} 
-	
 	
 	 
 	public static void main(String[]args){
@@ -40,12 +40,16 @@ public class JFrameDesign extends JFrame {
 	private void initUI(){ 
 		JButton welcome = new JButton("Go to Catalog");
 		  welcome.setBounds(700, 600, 200, 25);
+		 
 		//welcome.setLocation(400, 500);
 	
 		welcome.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent event){
-				System.exit(0);
+				CatalogHome homie = new CatalogHome();
+				add(homie);
+				pack();
+				homie.setVisible(true);
 			}
 		});
 		
