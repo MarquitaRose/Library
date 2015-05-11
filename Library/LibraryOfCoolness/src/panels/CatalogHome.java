@@ -4,12 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -40,7 +42,10 @@ public class CatalogHome extends JPanel {
 	
 	private void prepareGUI(){
 	      mainFrame = new JFrame("Library of Coolness");
-	      mainFrame.setSize(400,400);
+	      Toolkit tk = Toolkit.getDefaultToolkit();
+	      int SWidth = ((int) tk.getScreenSize().getWidth());
+	      int SHeight = ((int) tk.getScreenSize().getHeight());
+	      mainFrame.setSize(SWidth, SHeight);
 	      mainFrame.setLayout(new GridLayout(3, 1));
 	      mainFrame.addWindowListener(new WindowAdapter() {
 	         public void windowClosing(WindowEvent windowEvent){
@@ -61,7 +66,7 @@ public class CatalogHome extends JPanel {
 	      mainFrame.setVisible(true);  
 	   }
 
-	private void showTextFieldDemo(){
+	public void showTextFieldDemo(){
 		headerLabel.setText("Looking for something? Search it!");
 		
 		
@@ -81,8 +86,15 @@ public class CatalogHome extends JPanel {
 		controlPanel.add(searchContent);
 		controlPanel.add(search);
 		mainFrame.setVisible(true);
+		
+		
 	}
 			
+	
+	public static boolean useList(String[] popular, String searchContent){
+		return Arrays.asList(popular).contains(searchContent);
+	} 
+	
 	/*public static void initial(){
 		System.out.println("Testing");
 	 final JTextField search = new JTextField();
