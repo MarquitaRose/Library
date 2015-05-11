@@ -48,8 +48,12 @@ public class JFrameDesign extends JFrame {
 			public void actionPerformed(ActionEvent event){
 				CatalogHome homie = new CatalogHome();
 				add(homie);
+				homie.setVisible(true);
+				/*CatalogHome homie = new CatalogHome();
+				add(homie);
 				pack();
 				homie.setVisible(true);
+				*/
 			}
 		});
 		
