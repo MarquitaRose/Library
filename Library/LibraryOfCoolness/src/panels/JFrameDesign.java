@@ -1,3 +1,4 @@
+package panels;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -14,8 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import panels.CatalogHome;
 
 @SuppressWarnings("serial")
 public class JFrameDesign extends JFrame {
@@ -47,6 +46,7 @@ public class JFrameDesign extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent event){
 				CatalogHome homie = new CatalogHome();
+				homie.showTextFieldDemo();
 				add(homie);
 				homie.setVisible(true);
 				/*CatalogHome homie = new CatalogHome();
@@ -67,7 +67,7 @@ public class JFrameDesign extends JFrame {
     Toolkit tk = Toolkit.getDefaultToolkit();
     int SWidth = ((int) tk.getScreenSize().getWidth());
     int SHeight = ((int) tk.getScreenSize().getHeight());
-		setTitle("Library");
+		setTitle("Library of Coolness");
      setSize(SWidth, SHeight);
      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
      setLocationRelativeTo(null);
