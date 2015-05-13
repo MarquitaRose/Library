@@ -26,8 +26,11 @@ import javax.swing.JTextField;
 public class CatalogHome extends JPanel {
  
 	private JLabel headerLabel;
-  private JPanel controlPanel;
-  private JLabel statusLabel;
+	private JLabel statusLabel;
+	private JLabel user;
+	private JLabel password;
+	private JPanel controlPanel;
+  
   private JFrame mainFrame;
   
 	public CatalogHome(){
@@ -53,16 +56,21 @@ public class CatalogHome extends JPanel {
 	         }        
 	      });    
 	      headerLabel = new JLabel("", JLabel.CENTER);        
-	      statusLabel = new JLabel("",JLabel.CENTER);    
+	      statusLabel = new JLabel("",JLabel.CENTER);   
+	      user = new JLabel("", JLabel.LEFT);
+	      password = new JLabel("", JLabel.LEFT);
 
 	      statusLabel.setSize(350,100);
-
+	      //user.setSize(550, 100);
+	      
 	      controlPanel = new JPanel();
 	      controlPanel.setLayout(new FlowLayout());
 
 	      mainFrame.add(headerLabel);
 	      mainFrame.add(controlPanel);
 	      mainFrame.add(statusLabel);
+	      mainFrame.add(user);
+	      mainFrame.add(password);
 	      mainFrame.setVisible(true);  
 	   }
 
@@ -71,9 +79,13 @@ public class CatalogHome extends JPanel {
 		
 		
 		JLabel searchBar = new JLabel("", JLabel.CENTER);
-		final JTextField searchContent = new JTextField(20);
+		searchBar.setLayout(null);
+		searchBar.setBounds(400, 500, 200, 20);
+		final JTextField searchContent = new JTextField(50);
+		
 		
 		JButton search = new JButton("Search");
+		//search.setBounds(400, 500, 200, 20);
 		search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				String data= "You searched \"" + searchContent.getText() + "\"";
@@ -82,9 +94,30 @@ public class CatalogHome extends JPanel {
 		});
 		
 		
+		JLabel username = new JLabel("Username:", JLabel.LEFT);
+		final JTextField usernameInput = new JTextField(10);
+		JLabel passcode = new JLabel("Password:", JLabel.LEFT);
+		final JTextField passwordInput = new JPasswordField(10);
+		
+		JButton login = new JButton("LOGIN");
+		login.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String loginInfo = usernameInput.getText() + "!!! Hey, hey, " + usernameInput.getText() + "!!!";
+				user.setText(loginInfo);
+			}
+		});
+		
+		
+		
 		controlPanel.add(searchBar);
 		controlPanel.add(searchContent);
 		controlPanel.add(search);
+	
+		controlPanel.add(username);
+		controlPanel.add(usernameInput);
+		controlPanel.add(passcode);
+		controlPanel.add(passwordInput);
+		controlPanel.add(login);
 		mainFrame.setVisible(true);
 		
 		
