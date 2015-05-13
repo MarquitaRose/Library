@@ -1,6 +1,7 @@
 package panels;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -30,6 +31,13 @@ public class CatalogHome extends JPanel {
 	private JLabel user;
 	private JLabel password;
 	private JPanel controlPanel;
+	
+	JButton search = new JButton("Search");
+	JButton login = new JButton("LOGIN");
+	
+	Toolkit tk = Toolkit.getDefaultToolkit();
+    int SWidth = ((int) tk.getScreenSize().getWidth());
+    int SHeight = ((int) tk.getScreenSize().getHeight());
   
   private JFrame mainFrame;
   
@@ -39,7 +47,7 @@ public class CatalogHome extends JPanel {
 	
 	public static void main(String[] args){
 		CatalogHome swingControlDemo = new CatalogHome();
-		swingControlDemo.showTextFieldDemo();
+		swingControlDemo.textfieldLayout();
 	}
 	
 	private void prepareGUI(){
@@ -56,10 +64,12 @@ public class CatalogHome extends JPanel {
 	      });    
 	      headerLabel = new JLabel("", JLabel.CENTER);        
 	      statusLabel = new JLabel("",JLabel.CENTER);   
-	      user = new JLabel("", JLabel.RIGHT);
+	      user = new JLabel();
+	      user.setLayout(null);
+	      user.setLocation(200, 600);
 	      password = new JLabel("", JLabel.LEFT);
 
-	      statusLabel.setSize(350,100);
+	     // statusLabel.setSize(350,100);
 	      //user.setSize(550, 100);
 	      
 	      controlPanel = new JPanel();
@@ -73,18 +83,23 @@ public class CatalogHome extends JPanel {
 	      mainFrame.setVisible(true);  
 	   }
 
-	public void showTextFieldDemo(){
+	public void textfieldLayout(){
 		headerLabel.setText("Looking for something? Search it!");
+		
+		JPanel daPanel = new JPanel();
+		daPanel.setBackground(Color.pink);
+		daPanel.setSize(SWidth, SHeight);
+		BorderLayout homeScreen = new BorderLayout();
+		homeScreen.setHgap(10);
+		homeScreen.setVgap(10);
+		daPanel.setLayout(homeScreen);
 		
 		
 		JLabel searchBar = new JLabel("", JLabel.CENTER);
 		searchBar.setLayout(null);
-		searchBar.setBounds(400, 500, 200, 20);
+		searchBar.setLocation(400, 500);
 		final JTextField searchContent = new JTextField(50);
-		
-		
-		JButton search = new JButton("Search");
-		//search.setBounds(400, 500, 200, 20);
+		daPanel.add(search, BorderLayout.CENTER);
 		search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				String data= "You searched \"" + searchContent.getText() + "\"";
@@ -92,13 +107,18 @@ public class CatalogHome extends JPanel {
 			}
 		});
 		
-		
 		JLabel username = new JLabel("Username:", JLabel.LEFT);
 		final JTextField usernameInput = new JTextField(10);
+		username.setLocation(200, 600);
 		JLabel passcode = new JLabel("Password:", JLabel.LEFT);
 		final JTextField passwordInput = new JPasswordField(10);
 		
-		JButton login = new JButton("LOGIN");
+		daPanel.add(username);
+		daPanel.add(usernameInput);
+		daPanel.add(passcode);
+		daPanel.add(passwordInput);
+		
+		daPanel.add(login, BorderLayout.NORTH);
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String loginInfo = usernameInput.getText() + "!!! Hey, hey, " + usernameInput.getText() + "!!!";
@@ -107,8 +127,15 @@ public class CatalogHome extends JPanel {
 		});
 		
 		
+		//search.setBounds(400, 500, 200, 20);
 		
-		controlPanel.add(searchBar);
+		
+		
+		
+		
+		
+		
+		/*controlPanel.add(searchBar);
 		controlPanel.add(searchContent);
 		controlPanel.add(search);
 	
@@ -117,11 +144,13 @@ public class CatalogHome extends JPanel {
 		controlPanel.add(passcode);
 		controlPanel.add(passwordInput);
 		controlPanel.add(login);
+		*/
+		controlPanel.add(daPanel);
 		mainFrame.setVisible(true);
 		
 		
 	}
-			
+		
 	
 	public static boolean useList(String[] popular, String searchContent){
 		return Arrays.asList(popular).contains(searchContent);
