@@ -34,7 +34,6 @@ public class CatalogHome extends JPanel {
   private JFrame mainFrame;
   
 	public CatalogHome(){
-		//initial();
 		prepareGUI();
 	}
 	
@@ -49,7 +48,7 @@ public class CatalogHome extends JPanel {
 	      int SWidth = ((int) tk.getScreenSize().getWidth());
 	      int SHeight = ((int) tk.getScreenSize().getHeight());
 	      mainFrame.setSize(SWidth, SHeight);
-	      mainFrame.setLayout(new GridLayout(3, 1));
+	      mainFrame.setLayout(new GridLayout(5, 1));
 	      mainFrame.addWindowListener(new WindowAdapter() {
 	         public void windowClosing(WindowEvent windowEvent){
 	            System.exit(0);
@@ -57,7 +56,7 @@ public class CatalogHome extends JPanel {
 	      });    
 	      headerLabel = new JLabel("", JLabel.CENTER);        
 	      statusLabel = new JLabel("",JLabel.CENTER);   
-	      user = new JLabel("", JLabel.LEFT);
+	      user = new JLabel("", JLabel.RIGHT);
 	      password = new JLabel("", JLabel.LEFT);
 
 	      statusLabel.setSize(350,100);
@@ -128,18 +127,4 @@ public class CatalogHome extends JPanel {
 		return Arrays.asList(popular).contains(searchContent);
 	} 
 	
-	/*public static void initial(){
-		System.out.println("Testing");
-	 final JTextField search = new JTextField();
-	search.setLayout(new BorderLayout());
-		JLabel label = new JLabel("Howdy");
-	label.setCursor(Cursor.getDefaultCursor());
-	search.add(label, BorderLayout.LINE_END);
-	label.addMouseListener(new MouseAdapter(){
-		@Override
-		public void mouseClicked(MouseEvent e){
-			search.setText("");
-		}
-	});
-	}*/
 }
