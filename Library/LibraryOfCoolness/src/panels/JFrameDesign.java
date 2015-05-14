@@ -40,7 +40,6 @@ public class JFrameDesign extends JFrame {
 		JButton welcome = new JButton("Go to Catalog");
 		  welcome.setBounds(700, 600, 200, 25);
 		 
-		//welcome.setLocation(400, 500);
 	
 		welcome.addActionListener(new ActionListener(){
 			@Override
@@ -49,11 +48,6 @@ public class JFrameDesign extends JFrame {
 				homie.textfieldLayout();
 				add(homie);
 				homie.setVisible(true);
-				/*CatalogHome homie = new CatalogHome();
-				add(homie);
-				pack();
-				homie.setVisible(true);
-				*/
 			}
 		});
 		

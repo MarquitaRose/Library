@@ -1,17 +1,18 @@
 package panels;
 
-import java.awt.BorderLayout;
+
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Arrays;
@@ -23,6 +24,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import Library.Book;
+import Library.Library; 
 
 
 @SuppressWarnings("serial")
@@ -41,12 +44,33 @@ public class CatalogHome extends JPanel {
     int SWidth = ((int) tk.getScreenSize().getWidth());
     int SHeight = ((int) tk.getScreenSize().getHeight());
   
+    Graphics g;
+    
+   // static Book[] books = new Book[Arrays.fiction.length];
+    
   private JFrame mainFrame;
   
 	public CatalogHome(){
+		paint(g);
 		prepareGUI();
+		
 	}
 	
+	
+	public void paint(Graphics g){
+		Graphics2D g2d = (Graphics2D)g;
+		 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		Font fong = new Font("Serif", Font.PLAIN, 96);
+		g2d.setFont(fong);
+		g2d.drawString("Text", 300,  700);
+		
+		for (int i = 0; i < Library.books.length-1; i++ )
+		{
+			System.out.println(books[i].getTitle() + ", by " + books[i].getAuthor());
+		}
+	}
+
 	public static void main(String[] args){
 		CatalogHome swingControlDemo = new CatalogHome();
 		swingControlDemo.textfieldLayout();
@@ -170,10 +194,18 @@ public class CatalogHome extends JPanel {
 		
 		
 	}
-		
 	
-	public static boolean useList(String[] popular, String searchContent){
+	/*public void paintComponent(Graphics g){
+		Graphics2D recent = (Graphics2D) g;
+		recent.setPaint(Color.black);
+		recent.drawString(myMessage, 100, 600);
+	}
+	*/
+	
+	
+	
+	/*public static boolean useList(String[] popular, String searchContent){
 		return Arrays.asList(popular).contains(searchContent);
-	} 
+	} */
 	
 }
