@@ -121,7 +121,7 @@ public class CatalogHome extends JPanel {
 		daPanel.add(login, BorderLayout.NORTH);
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String loginInfo = usernameInput.getText() + "!!! Hey, hey, " + usernameInput.getText() + "!!!";
+				String loginInfo = usernameInput.getText() + "!!! Hey, hey, " + usernameInput.getText() + "!!";
 				user.setText(loginInfo);
 			}
 		});
