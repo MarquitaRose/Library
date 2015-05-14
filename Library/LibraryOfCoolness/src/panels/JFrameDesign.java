@@ -46,7 +46,7 @@ public class JFrameDesign extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent event){
 				CatalogHome homie = new CatalogHome();
-				homie.showTextFieldDemo();
+				homie.textfieldLayout();
 				add(homie);
 				homie.setVisible(true);
 				/*CatalogHome homie = new CatalogHome();

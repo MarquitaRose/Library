@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -84,22 +86,32 @@ public class CatalogHome extends JPanel {
 	   }
 
 	public void textfieldLayout(){
-		headerLabel.setText("Looking for something? Search it!");
+		//headerLabel.setText("Looking for something? Search it!");
 		
 		JPanel daPanel = new JPanel();
 		daPanel.setBackground(Color.pink);
-		daPanel.setSize(SWidth, SHeight);
-		BorderLayout homeScreen = new BorderLayout();
-		homeScreen.setHgap(10);
-		homeScreen.setVgap(10);
+		daPanel.setSize(900, 900);
+		GridBagLayout homeScreen = new GridBagLayout();
+		
 		daPanel.setLayout(homeScreen);
+		GridBagConstraints gbc = new GridBagConstraints();
+		
+		gbc.fill = GridBagConstraints.NORTH;
+		gbc.gridwidth = 8;
+		gbc.gridx = 0;
+		gbc.gridy =5;
 		
 		
 		JLabel searchBar = new JLabel("", JLabel.CENTER);
-		searchBar.setLayout(null);
-		searchBar.setLocation(400, 500);
+		daPanel.add(searchBar, gbc);
+		
 		final JTextField searchContent = new JTextField(50);
-		daPanel.add(search, BorderLayout.CENTER);
+		daPanel.add(searchContent);
+		
+		
+		gbc.gridx = 1;
+		gbc.gridy = 5;
+		daPanel.add(search, gbc);
 		search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				String data= "You searched \"" + searchContent.getText() + "\"";
@@ -107,18 +119,31 @@ public class CatalogHome extends JPanel {
 			}
 		});
 		
-		JLabel username = new JLabel("Username:", JLabel.LEFT);
+		JLabel username = new JLabel("Username:");
+		gbc.fill = GridBagConstraints.BELOW_BASELINE_TRAILING;
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		daPanel.add(username, gbc);
+		
 		final JTextField usernameInput = new JTextField(10);
-		username.setLocation(200, 600);
+		gbc.gridx = 2;
+		gbc.gridy = 0;
+		daPanel.add(usernameInput, gbc);
+		
+		
 		JLabel passcode = new JLabel("Password:", JLabel.LEFT);
+		gbc.gridx = 3;
+		gbc.gridy = 0;
+		daPanel.add(passcode, gbc);
+		
 		final JTextField passwordInput = new JPasswordField(10);
+		gbc.gridx = 4;
+		gbc.gridy = 0;
+		daPanel.add(passwordInput, gbc);
 		
-		daPanel.add(username);
-		daPanel.add(usernameInput);
-		daPanel.add(passcode);
-		daPanel.add(passwordInput);
-		
-		daPanel.add(login, BorderLayout.NORTH);
+		gbc.gridx= 2;
+		gbc.gridy = 1;
+		daPanel.add(login, gbc);
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String loginInfo = usernameInput.getText() + "!!! Hey, hey, " + usernameInput.getText() + "!!!";
@@ -126,13 +151,7 @@ public class CatalogHome extends JPanel {
 			}
 		});
 		
-		
-		//search.setBounds(400, 500, 200, 20);
-		
-		
-		
-		
-		
+	
 		
 		
 		/*controlPanel.add(searchBar);
