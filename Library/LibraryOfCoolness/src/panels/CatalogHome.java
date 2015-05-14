@@ -75,6 +75,7 @@ public class CatalogHome extends JPanel {
 	      //user.setSize(550, 100);
 	      
 	      controlPanel = new JPanel();
+	      controlPanel.setBackground(Color.green);
 	      controlPanel.setLayout(new FlowLayout());
 
 	      mainFrame.add(headerLabel);
@@ -89,7 +90,7 @@ public class CatalogHome extends JPanel {
 		//headerLabel.setText("Looking for something? Search it!");
 		
 		JPanel daPanel = new JPanel();
-		daPanel.setBackground(Color.pink);
+		daPanel.setBackground(Color.green);
 		daPanel.setSize(900, 900);
 		GridBagLayout homeScreen = new GridBagLayout();
 		
