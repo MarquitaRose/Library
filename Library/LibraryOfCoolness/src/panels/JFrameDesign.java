@@ -1,25 +1,39 @@
 package panels;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.TexturePaint;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+
 
 @SuppressWarnings("serial")
 public class JFrameDesign extends JFrame {
-	
-	
+	 Toolkit tk = Toolkit.getDefaultToolkit();
+	int SWidth = ((int) tk.getScreenSize().getWidth());
+    int SHeight = ((int) tk.getScreenSize().getHeight());
 
 	public JFrameDesign(){
 		initUI();
@@ -31,6 +45,7 @@ public class JFrameDesign extends JFrame {
 
 	            public void run() {
 	                JFrameDesign ex = new JFrameDesign();
+	                //ex.setBackground(Color.red);
 	                ex.setVisible(true);
 	            }
 	        });
@@ -38,14 +53,18 @@ public class JFrameDesign extends JFrame {
 	
 	private void initUI(){ 
 		JButton welcome = new JButton("Go to Catalog");
-		  welcome.setBounds(700, 600, 200, 25);
-		 
+		  welcome.setBounds(((SWidth / 2)- 200), 600, 400, 50);
+		  Font welcomeButton = new Font("Serif", Font.PLAIN, 30);
+		  welcome.setFont(welcomeButton);
+		welcome.setBackground(Color.magenta);
+		  welcome.setForeground(Color.green);
 	
 		welcome.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent event){
 				CatalogHome homie = new CatalogHome();
 				homie.textfieldLayout();
+				homie.setBackground(Color.red);
 				add(homie);
 				homie.setVisible(true);
 			}
@@ -55,12 +74,11 @@ public class JFrameDesign extends JFrame {
 		 
 		
 		DrawStuff panel = new DrawStuff();
+		panel.setBackground(Color.blue);
 		add(panel);
 		pack();
 		panel.setVisible(true);
-    Toolkit tk = Toolkit.getDefaultToolkit();
-    int SWidth = ((int) tk.getScreenSize().getWidth());
-    int SHeight = ((int) tk.getScreenSize().getHeight());
+   
 		setTitle("Library of Coolness");
      setSize(SWidth, SHeight);
      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -91,26 +109,67 @@ public class JFrameDesign extends JFrame {
 @SuppressWarnings("serial")
 class DrawStuff extends JPanel{
 	// Image Welcome = new ImageIcon("Welcome.gif").getImage();
-	Image Welcome = Toolkit.getDefaultToolkit().getImage("Welcome.gif");
-	 
+	//Image Welcome = Toolkit.getDefaultToolkit().getImage("Welcome.gif");
+	private BufferedImage welcome; 
+	
+	
+	public void drawApp(Graphics2D g) {
+	   BufferedImage sandy = null;
+	   TexturePaint sandytp;
+	   
+	   	try{
+	   			sandy = ImageIO.read(new File("res/sand.jpg"));
+	   		} catch (IOException ex) {
+	   			System.out.println("Uh, error!");
+	   			Logger.getLogger(JFrameDesign.class.getName()).log(Level.SEVERE, null, ex);
+	   		}
+	  
+	   		////Draws the water habitat////
+		   Color water = new Color (39, 128, 216);
+	   		g.setColor(water);
+	   		g.fillRect(0, 0, 1600, 1000);
+	   		sandytp = new TexturePaint(sandy, new Rectangle(10, 10, 100, 200));
+	   		g.setPaint(sandytp);
+	   		g.fillRect(0, 700, 1600, 200);
+	}
+
+   /* public DrawStuff() {
+    	BufferedImage sandy = null;
+		   TexturePaint sandytp;
+		   	try{
+		   			sandy = ImageIO.read(new File("res/sand.jpg"));
+		   		} catch (IOException ex) {
+		   			System.out.println("Uh, error!");
+		   			Logger.getLogger(JFrameDesign.class.getName()).log(Level.SEVERE, null, ex);
+		   		}
+    }*/
+    
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(welcome, 0, 0, null);        
+    }
+
+
 	private void setSurfaceSize() {
 	        
 	        Dimension d = new Dimension();
-	        d.width = Welcome.getWidth(null);
-	        d.height = Welcome.getHeight(null);
+	        d.width = welcome.getWidth(null);
+	        d.height = welcome.getHeight(null);
 	        setPreferredSize(d);        
 	    }
 	
 	 private void doDrawing(Graphics g) {
     Graphics2D g2d = (Graphics2D) g;
  
-    g2d.drawImage(Welcome, 0, 0, this);
+    g2d.drawImage(welcome, 0, 0, this);
     g2d.finalize();
  
 }
 
-@Override
-public void paintComponent(Graphics g) {
+//@Override
+/*public void paintComponent(Graphics g) {
 
     super.paintComponent(g);
     setSurfaceSize();
@@ -119,5 +178,5 @@ public void paintComponent(Graphics g) {
     System.out.println(" Meeeh");
 
 }
-
+*/
 }
