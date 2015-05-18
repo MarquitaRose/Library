@@ -45,7 +45,6 @@ public class JFrameDesign extends JFrame {
 
 	            public void run() {
 	                JFrameDesign ex = new JFrameDesign();
-	                //ex.setBackground(Color.red);
 	                ex.setVisible(true);
 	            }
 	        });
@@ -53,12 +52,14 @@ public class JFrameDesign extends JFrame {
 	
 	private void initUI(){ 
 		JButton welcome = new JButton("Go to Catalog");
+		/////MAKAELA/////
+		// This line right beneath what you are reading |vvv| adjusts the size of the button//
 		  welcome.setBounds(((SWidth / 2)- 200), 600, 400, 50);
 		  Font welcomeButton = new Font("Serif", Font.PLAIN, 30);
 		  welcome.setFont(welcomeButton);
 		welcome.setBackground(Color.magenta);
 		  welcome.setForeground(Color.green);
-	
+	/////MAKAELA/////
 		welcome.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent event){
@@ -112,13 +113,12 @@ class DrawStuff extends JPanel{
 	//Image Welcome = Toolkit.getDefaultToolkit().getImage("Welcome.gif");
 	private BufferedImage welcome; 
 	
-	
 	public void drawApp(Graphics2D g) {
 	   BufferedImage sandy = null;
 	   TexturePaint sandytp;
 	   
 	   	try{
-	   			sandy = ImageIO.read(new File("res/sand.jpg"));
+	   			sandy = ImageIO.read(new File("hello.jpg"));
 	   		} catch (IOException ex) {
 	   			System.out.println("Uh, error!");
 	   			Logger.getLogger(JFrameDesign.class.getName()).log(Level.SEVERE, null, ex);
@@ -131,6 +131,7 @@ class DrawStuff extends JPanel{
 	   		sandytp = new TexturePaint(sandy, new Rectangle(10, 10, 100, 200));
 	   		g.setPaint(sandytp);
 	   		g.fillRect(0, 700, 1600, 200);
+	   		System.out.println(" heyo");
 	}
 
    /* public DrawStuff() {

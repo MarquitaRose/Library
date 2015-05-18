@@ -98,7 +98,10 @@ public class CatalogHome extends JPanel {
 
 	    
 	      searchBarPlace = new JPanel();
+	      /////MAKAELA/////
 	      searchBarPlace.setBackground(Color.red);
+	      searchBarPlace.setForeground(Color.green);
+	      /////MAKAELA/////
 	      gbc.fill = GridBagConstraints.WEST;
 	      theLogin = new JPanel();
 	      
@@ -142,11 +145,16 @@ public class CatalogHome extends JPanel {
 		gbc.fill = GridBagConstraints.CENTER;
 		gbc.gridx = 2;
 		searchBarPlace.add(statusLabel, gbc);
+		/////MAKAELA/////
+		Font searchFont = new Font("Serif", Font.BOLD, 15);
+		search.setFont(searchFont);
+		search.setBackground(Color.blue);
+		search.setForeground(Color.white);
+		/////MAKAELA/////
 		search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				String data= "You searched \"" + searchContent.getText() + "\"";
-				Font dataFont = new Font("Serif", Font.BOLD, 66);
-				data.setFont(dataFont);
+				
 				statusLabel.setText(data); 
 				
 				//data.setFont(dataFont);
@@ -156,6 +164,11 @@ public class CatalogHome extends JPanel {
 		gbc.gridx = 4;
 		gbc.gridy = 0;
 		JLabel username = new JLabel("Username:");
+		/////MAKAELA/////
+		Font wordUsername = new Font("Serif", Font.BOLD, 15);
+		username.setFont(wordUsername);
+		username.setForeground(Color.PINK);
+		/////MAKAELA/////
 		gbc.fill = GridBagConstraints.BELOW_BASELINE_TRAILING;
 		theLogin.add(username, gbc);
 		
@@ -166,7 +179,12 @@ public class CatalogHome extends JPanel {
 		
 		gbc.gridx = 6;
 		gbc.gridy = 0;
+		/////MAKAELA/////
 		JLabel passcode = new JLabel("Password:", JLabel.LEFT);
+		Font wordPassword = new Font("Serif", Font.ITALIC, 15);
+		passcode.setFont(wordPassword);
+		passcode.setForeground(Color.orange);
+		/////MAKAELA/////
 		theLogin.add(passcode, gbc);
 		
 		final JTextField passwordInput = new JPasswordField(10);
@@ -179,6 +197,12 @@ public class CatalogHome extends JPanel {
 		theLogin.add(login, gbc);
 		gbc.fill = GridBagConstraints.CENTER;
 		theLogin.add(user, gbc);
+		/////MAKAELA////
+		Font logButtonFont = new Font("Serif", Font.BOLD, 15);
+		login.setFont(logButtonFont);
+		login.setForeground(Color.gray);
+		login.setBackground(Color.cyan);
+		/////MAKAELA/////
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//theLogin.removeNotify();
