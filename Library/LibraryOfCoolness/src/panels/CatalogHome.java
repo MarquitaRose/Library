@@ -62,9 +62,9 @@ public class CatalogHome extends JPanel {
 		Graphics2D g2 = (Graphics2D)g;
 	      g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 	      RenderingHints.VALUE_ANTIALIAS_ON);
-	      Font arial = new Font("Arial", Font.PLAIN, 96);
-	      Font TimesNewRoman = new Font("TimesNewRoman", Font.PLAIN, 100);
-	      g2.setFont(arial);
+	      Font firstfont = new Font("old english text mt", Font.BOLD, 96);
+	      
+	      g2.setFont(firstfont);
 	      g2.drawString("Text", 40, 120);
 		
 		/*for (int i = 0; i < Library.books.length-1; i++ )
@@ -80,7 +80,7 @@ public class CatalogHome extends JPanel {
 	
 	private void prepareGUI(){
 		mainFrame = new JFrame("Library of Coolness");
-	       mainFrame.setBackground(Color.red);
+	       mainFrame.setBackground(Color.magenta);
 	       Toolkit tk = Toolkit.getDefaultToolkit();
 	      int SWidth = ((int) tk.getScreenSize().getWidth());
 	      int SHeight = ((int) tk.getScreenSize().getHeight());
@@ -101,7 +101,7 @@ public class CatalogHome extends JPanel {
 	      searchBarPlace = new JPanel();
 	      /////MAKAELA/////
 	      searchBarPlace.setBackground(Color.green);
-	      searchBarPlace.setForeground(Color.red);
+	      searchBarPlace.setForeground(Color.green);
 	      /////MAKAELA/////
 	      gbc.fill = GridBagConstraints.WEST;
 	      theLogin = new JPanel();
@@ -146,14 +146,15 @@ public class CatalogHome extends JPanel {
 		gbc.fill = GridBagConstraints.CENTER;
 		gbc.gridx = 2;
 		searchBarPlace.add(statusLabel, gbc);
-		/////MAKAELA/////
-		Font searchFont = new Font("Serif", Font.BOLD, 15);
+		/////SEARCHBAR/////
+		Font searchFont = new Font("old english text mt", Font.BOLD, 17);
 		search.setFont(searchFont);
-		search.setBackground(Color.red);
-		search.setForeground(Color.white);
+		search.setBackground(Color.white);
+		search.setForeground(Color.black);
 		/////MAKAELA/////
 		search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
+				
 				String data= "You searched \"" + searchContent.getText() + "\"";
 				
 				statusLabel.setText(data); 
@@ -166,7 +167,7 @@ public class CatalogHome extends JPanel {
 		gbc.gridy = 0;
 		JLabel username = new JLabel("Username:");
 		/////MAKAELA/////
-		Font wordUsername = new Font("TimesNewRoman", Font.BOLD, 15);
+		Font wordUsername = new Font("old english text mt", Font.BOLD, 15);
 		username.setFont(wordUsername);
 		username.setForeground(Color.black);
 		/////MAKAELA/////
@@ -182,7 +183,7 @@ public class CatalogHome extends JPanel {
 		gbc.gridy = 0;
 		/////MAKAELA/////
 		JLabel passcode = new JLabel("Password:", JLabel.LEFT);
-		Font wordPassword = new Font("TimesNewRoman", Font.BOLD, 15);
+		Font wordPassword = new Font("old english text mt", Font.BOLD, 15);
 		passcode.setFont(wordPassword);
 		passcode.setForeground(Color.black);
 		/////MAKAELA/////
@@ -199,10 +200,11 @@ public class CatalogHome extends JPanel {
 		gbc.fill = GridBagConstraints.CENTER;
 		theLogin.add(user, gbc);
 		/////MAKAELA////
-		Font logButtonFont = new Font("Serif", Font.BOLD, 15);
+		Color searchbutton = new Color(228, 235, 250);
+		Font logButtonFont = new Font("old english text mt", Font.BOLD, 15);
 		login.setFont(logButtonFont);
-		login.setForeground(Color.gray);
-		login.setBackground(Color.cyan);
+		login.setForeground(Color.black);
+		login.setBackground(Color.white);
 		/////MAKAELA/////
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
