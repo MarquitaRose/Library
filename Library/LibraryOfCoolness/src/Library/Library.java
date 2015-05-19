@@ -3,7 +3,7 @@ package Library;
 
 
 import java.util.Scanner;
-
+import Library.Book;
 
 public class Library {
 	static int minCustomers = 100;
@@ -11,6 +11,7 @@ public class Library {
 	
 	//Create a scanner object each for text and numbers
 	
+   
     
 	public static void main(String[] args) {
 		
@@ -36,9 +37,6 @@ public class Library {
 	
 	private static int addCustomer()
 	{
-		
-		
-		
 		return 0;
 	} 
 	
@@ -63,12 +61,12 @@ public class Library {
 	*/	
 
 	}
-	private static void removeBook(int delbook)
+	/*private static void removeBook(int delbook)
 	{
 		for (int i = delbook; i < books.length-1; i++)
 		{
 			books[i] = books[i+1];
 		}
-	}
+	}*/
 
 }

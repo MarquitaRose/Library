@@ -67,7 +67,6 @@ public class Book implements Item{
 
 	@Override
 	public long getCustomerID() {
-		// TODO Auto-generated method stub
 		return custID;
 	}
 
