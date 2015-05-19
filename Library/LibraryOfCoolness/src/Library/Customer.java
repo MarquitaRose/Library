@@ -2,20 +2,25 @@ package Library;
 
 public class Customer implements Person {
 
-	private long iD;
+	private String iD;
 	private String fName;
 	private String lName;
 
 	@Override
-	public long getID() {
+	public String getID() {
 		// Will return the ID
 		return iD;
 	}
 	
 	@Override
-	public void setID(long id) {
+	public void setID(String id) {
 		// TODO Auto-generated method stub
 		iD = id;
+	}
+	
+	public void setID()
+	{
+		iD = fName + lName;
 	}
 	
 	@Override

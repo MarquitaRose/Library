@@ -70,10 +70,8 @@ public class JFrameDesign extends JFrame {
   /////MAKAELA/////
   // This line right beneath what you are reading |vvv| adjusts the size of the button//
 	welcome.setBounds(((SWidth / 2)- 200), 600, 400, 50);
-	Font welcomeButton = new Font("Serif", Font.PLAIN, 30);
+	Font welcomeButton = new Font("old english text mt", Font.BOLD, 30);
 	welcome.setFont(welcomeButton);
-  welcome.setBackground(Color.magenta);
-	welcome.setForeground(Color.green);
 	
   panel.add(welcome);
   

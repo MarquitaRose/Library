@@ -2,8 +2,8 @@ package Library;
 
 public interface Person {
 
-	public long getID();
-	public void setID(long id);
+	public String getID();
+	public void setID(String id);
 	
 	public void setFName(String fname);
 	public String getFName();

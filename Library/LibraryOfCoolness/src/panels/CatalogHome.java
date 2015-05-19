@@ -2,12 +2,10 @@
 package panels;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
@@ -51,13 +49,20 @@ public class CatalogHome extends JPanel {
    Graphics g;
 	GridBagConstraints gbc = new GridBagConstraints();
   
-   //static Book[] books = new Book[InitArrays.popular.length];
-	
+   static Book[] books = new Book[InitArrays.fiction.length];
+   
+  	
   private JFrame mainFrame;
  
  public CatalogHome(){
   //paint(g);
-  prepareGUI();
+  prepareGUI(); for (int i = 0; i < books.length-1; i++)
+  {
+	  books[i].setTitle(InitArrays.fiction[i]);
+	 // books[i].setAuthor(InitArrays.fictionAuthors[i]);
+	   
+  }
+
  // System.out.println(books);
  }
  
@@ -74,7 +79,10 @@ public class CatalogHome extends JPanel {
   {
    System.out.println(books[i].getTitle() + ", by " + books[i].getAuthor());
   }*/
+   	
  }
+
+ 
  public static void main(String[] args){
   CatalogHome swingControlDemo = new CatalogHome();
   swingControlDemo.textfieldLayout();
@@ -98,13 +106,10 @@ public class CatalogHome extends JPanel {
    	user = new JLabel();
    	password = new JLabel("");
    	newThings = new JLabel();
+   	
  	/////Adding and designing new JPanels\\\\\
    	searchBarPlace = new JPanel();
-   	/////MAKAELA/////
    searchBarPlace.setBackground(Color.green);
-   	searchBarPlace.setForeground(Color.green);
-   	/////MAKAELA/////
-   	gbc.fill = GridBagConstraints.WEST;
    	theLogin = new JPanel();
    	recentlyAdded = new JPanel();
    	recentlyAdded.setBackground(Color.cyan);
@@ -117,9 +122,9 @@ public class CatalogHome extends JPanel {
    	mainFrame.add(user);
    	mainFrame.add(statusLabel);
    	mainFrame.add(password);
-   	
    	mainFrame.setVisible(true); 
 	}
+ 
  public void textfieldLayout(){
   
   gbc.fill = GridBagConstraints.CENTER;
