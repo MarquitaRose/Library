@@ -56,14 +56,7 @@ public class CatalogHome extends JPanel {
  
  public CatalogHome(){
   //paint(g);
-  prepareGUI(); for (int i = 0; i < books.length-1; i++)
-  {
-	  books[i].setTitle(InitArrays.fiction[i]);
-	 // books[i].setAuthor(InitArrays.fictionAuthors[i]);
-	   
-  }
-
- // System.out.println(books);
+  prepareGUI(); 
  }
  
  
@@ -124,6 +117,7 @@ public class CatalogHome extends JPanel {
    	mainFrame.add(password);
    	mainFrame.setVisible(true); 
 	}
+
  
  public void textfieldLayout(){
   
@@ -208,7 +202,7 @@ public class CatalogHome extends JPanel {
    }
   });
   
-  
+  JLabel newThings = new JLabel("RECENTLY ADDED"); 
  recentlyAdded.add(newThings);
   //controlPanel.add(daPanel);
   mainFrame.setVisible(true);
