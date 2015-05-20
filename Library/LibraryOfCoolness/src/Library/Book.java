@@ -8,6 +8,14 @@ public class Book implements Item{
 	private String title;
 	private String author;
 	
+	public Book()
+	{
+		title = "";
+		author = "";
+		custID = 0;
+		checkedOut = false;
+	}
+	
 	public String getTitle()
 	{
 		return title;
@@ -67,6 +75,7 @@ public class Book implements Item{
 
 	@Override
 	public long getCustomerID() {
+		// TODO Auto-generated method stub
 		return custID;
 	}
 

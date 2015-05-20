@@ -1,56 +1,131 @@
 package Library;
 
-
-
 import java.util.Scanner;
-import Library.Book;
 
-public class Library {
-	static int minCustomers = 100;
-    static Book[] books = new Book[Arrays.popular.length];
-	
-	//Create a scanner object each for text and numbers
-	
-   
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+
+
+public class Library extends JPanel{
+	static int maxCustomers = 100;
+	static int maxBooks = 100;
+	static int lastBook = 0;
+	static Customer[] customers = new Customer[maxCustomers];
+    static Book[] books = new Book[maxBooks];
+    static int answer = 0;
     
+	//Create a scanner object each for text and numbers
+	private static Scanner tInput = new Scanner(System.in);
+	private static Scanner nInput = new Scanner(System.in);
+	
+	
 	public static void main(String[] args) {
+		
+		
+		//Initialize Books
+		
+		for (int i = 0; i < books.length; i++)
+			books[i] = new Book();
 		
 		//Add the books
 		addBooks();
 		
-		books[3].checkOut(21654987);
-		
-		for (int i = 0; i < books.length-1; i++ )
-		{
-			System.out.println(books[i].getTitle() + ", by " + books[i].getAuthor());
-		}
-		
-		/*do 
-		{
-		System.out.println("What is the maximum amount of customers you expect?");
-		} while (!(Integer.parseInt(tInput.nextLine())>=minCustomers));
-		*/
+		//Menu
+		menu();
 
-		
 		
 	}
 	
-	private static int addCustomer()
+	private static void menu()
 	{
+		//The Main Menu
+		do
+		{
+			
+			System.out.println("What would you like to do?");
+			System.out.println("1 display books");
+			System.out.println("2 checkout a book");
+			System.out.println("3 checkin a book");
+			System.out.println("4 add a customer");
+			System.out.println("5 add books");
+			answer = nInput.nextInt();
+			
+			if (answer == 1)
+				{
+				System.out.println(lastBook);
+				displayBooks();
+				}
+			else if (answer == 2)
+				checkout();
+			else if (answer == 3)
+				checkin();
+			else if (answer == 4)
+				addCustomer();
+			else if (answer == 5)
+				addBooks();
+					
+		}while (answer != 0);
+		
+	}
+	
+	private static int findBook()
+	{
+		int i;
+		System.out.println("Which book");
+		String t = tInput.nextLine();
+		System.out.println(lastBook);
+		for (i = 0; i < lastBook; i++)
+		{
+			if (books[i].getTitle().toLowerCase().equals(t.toLowerCase()))
+				return i;
+			System.out.println(i);
+		}
 		return 0;
+		
+	}
+	
+	private static void addCustomer()
+	{
+		
+	
 	} 
 	
+	private static void checkout()
+	{
+		int bookI = findBook();
+		if (bookI!=0)
+		{
+			books[bookI].checkOut(1);
+			System.out.println(books[bookI].getTitle() + " is now checked out");
+		}
+		else
+			System.out.println("The book wasn't found.");
+			
+		
+	}
+	
+	private static void checkin()
+	{
+		
+		
+	}
 	private static void addBooks()
 	{
-		for (int i = 0; i < books.length-1; i++)
+		JLabel enterBooks = new JLabel("How many books do you want to enter?");
+		
+		int numBooks = nInput.nextInt();
+		
+		int b = 0;
+		
+		for (b = 0; b < books.length && !books[b].getTitle().equals(""); b++)
 		{
-			books[i] = new Book();
-			books[i].setTitle(Arrays.popular[i]);
-			books[i].setAuthor(Arrays.popularAuthors[i]);
+			
 		}
+		lastBook = b;
+		System.out.println(lastBook);
 		
-		
-/*		for (int i = 0; i < books.length; i++ )
+		for (int i = lastBook; i < numBooks+lastBook && i < maxBooks; i++ )
 		{
 			System.out.println("Enter a book name");
 			books[i].setTitle(tInput.nextLine());
@@ -58,15 +133,18 @@ public class Library {
 			books[i].setAuthor(tInput.nextLine());
 			
 		}
-	*/	
+		lastBook = b+numBooks;
 
 	}
-	/*private static void removeBook(int delbook)
+	
+	private static void displayBooks()
 	{
-		for (int i = delbook; i < books.length-1; i++)
+		for (int i = 0; i < lastBook; i++ )
 		{
-			books[i] = books[i+1];
+			System.out.println(books[i].getTitle() + ", by " + books[i].getAuthor() + " " + books[i].getCheckedOut());
 		}
-	}*/
+		
+
+	}
 
 }

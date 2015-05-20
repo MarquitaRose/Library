@@ -203,6 +203,8 @@ public class CatalogHome extends JPanel {
   });
   
   JLabel newThings = new JLabel("RECENTLY ADDED"); 
+  Font recentJLabel = new Font("serif", Font.PLAIN, 30);
+  newThings.setFont(recentJLabel);
  recentlyAdded.add(newThings);
   //controlPanel.add(daPanel);
   mainFrame.setVisible(true);
