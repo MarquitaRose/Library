@@ -67,8 +67,6 @@ public class JFrameDesign extends JFrame {
  	
   /////Creates button and designs the button and it's font\\\\\
   JButton welcome = new JButton("Go to Catalog");
-  /////MAKAELA/////
-  // This line right beneath what you are reading |vvv| adjusts the size of the button//
 	welcome.setBounds(((SWidth / 2)- 200), 600, 400, 50);
 	Font welcomeButton = new Font("old english text mt", Font.BOLD, 30);
 	welcome.setFont(welcomeButton);

@@ -1,12 +1,22 @@
 package Library;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Scanner;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import panels.CatalogHome;
 import panels.JFrameDesign;
@@ -25,6 +35,14 @@ public class userInteraction extends JFrame{
     Toolkit tk = Toolkit.getDefaultToolkit();
    	int SWidth = ((int) tk.getScreenSize().getWidth());
    	int SHeight = ((int) tk.getScreenSize().getHeight());
+   	
+   	private JFrame ofAwesomness;
+   	private JPanel withUser;
+   	private JPanel theButtons;
+   	private JButton itemCheckIn;
+   	private JButton itemCheckOut;
+   	private JButton addItem;
+   	private static JLabel bookSearch;
     
 	//Create a scanner object each for text and numbers
 	private static Scanner tInput = new Scanner(System.in);
@@ -40,8 +58,8 @@ public class userInteraction extends JFrame{
 		         	}
 		     	});*/
 		
-		  userInteraction swingControlDemo = new userInteraction();
-		  swingControlDemo.addBooks();
+		  userInteraction mm = new userInteraction();
+		 mm.menu();
 
 		
 		//Initialize Books
@@ -53,58 +71,68 @@ public class userInteraction extends JFrame{
 		addBooks();
 		
 		//Menu
-		menu();
+		//menu();
 
 		
 		
 	}
 	
-	userInteraction(){
-		preparing();
+	public userInteraction(){
+		preparingJPanel();
 	}
 	
-private void preparing(){
-	JFrame ofAwesomness = new JFrame();
+public void preparingJPanel(){
+	 ofAwesomness = new JFrame();
+	 ofAwesomness.setLayout(new GridLayout(4, 8));
 	ofAwesomness.setSize(SWidth, SHeight);
-	JPanel withUser = new JPanel();
+	ofAwesomness.addWindowListener(new WindowAdapter() {
+      	public void windowClosing(WindowEvent windowEvent){
+         	System.exit(0);
+      	}    	
+   	});	
 	
-	ofAwesomness.add(withUser);
+	theButtons = new JPanel();
+	
+	withUser = new JPanel();
+	withUser.setBackground(Color.green);
+	
+	
+	ofAwesomness.add(theButtons);
+	ofAwesomness.add(withUser); 
 	ofAwesomness.setVisible(true);
 }
-	private static void menu()
-	{
-		//The Main Menu
-		do
-		{
-			
-			System.out.println("What would you like to do?");
-			System.out.println("1 display books");
-			System.out.println("2 checkout a book");
-			System.out.println("3 checkin a book");
-			System.out.println("4 add a customer");
-			System.out.println("5 add books");
-			answer = nInput.nextInt();
-			
-			if (answer == 1)
-				{
-				System.out.println(lastBook);
-				displayBooks();
-				}
-			else if (answer == 2)
-				checkout();
-			else if (answer == 3)
-				checkin();
-			else if (answer == 4)
-				addCustomer();
-			else if (answer == 5)
-				addBooks();
-					
-		}while (answer != 0);
-		
-	}
+
+public void menu(){
 	
-	private static int findBook()
+		itemCheckIn = new JButton("Item check in");
+		itemCheckIn.addActionListener(new ActionListener() {
+			   public void actionPerformed(ActionEvent e){
+			 checkout();
+			   }
+			  });
+		
+		itemCheckOut = new JButton("Item check out");
+		itemCheckOut.addActionListener(new ActionListener() {
+			   public void actionPerformed(ActionEvent e){
+			    checkin();
+			   }
+			  });
+		
+		addItem = new JButton("Donate!");
+		addItem.addActionListener(new ActionListener() {
+			   public void actionPerformed(ActionEvent e){
+			 addBooks();
+			   }
+			  });
+		
+		theButtons.add(itemCheckIn);
+		theButtons.add(itemCheckOut);
+		theButtons.add(addItem);
+}
+
+	public static int findBook()
 	{
+		bookSearch = new JLabel("");
 		int i;
 		System.out.println("Which book");
 		String t = tInput.nextLine();
@@ -112,20 +140,14 @@ private void preparing(){
 		for (i = 0; i < lastBook; i++)
 		{
 			if (books[i].getTitle().toLowerCase().equals(t.toLowerCase()))
-				return i;
+				return 1;
 			System.out.println(i);
 		}
 		return 0;
-		
 	}
 	
-	private static void addCustomer()
-	{
-		
 	
-	} 
-	
-	private static void checkout()
+	public void checkout()
 	{
 		int bookI = findBook();
 		if (bookI!=0)
@@ -144,10 +166,17 @@ private void preparing(){
 		
 		
 	}
-	public void addBooks()
-	{
+	
+	/*public void JPanelAddBooks(){
 		JLabel enterBooks = new JLabel("How many books do you want to enter?");
+		Font enterBooksFont = new Font ("Serif", Font.PLAIN, 30);
+		enterBooks.setFont(enterBooksFont);
 		withUser.add(enterBooks);
+	}*/
+	
+	public static void addBooks()
+	{
+		
 		
 		int numBooks = nInput.nextInt();
 		

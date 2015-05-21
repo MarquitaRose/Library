@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 import Library.Book;
 //import Library.InitArrays;
 import Library.Library;
+import Library.userInteraction;
 
 @SuppressWarnings("serial")
 public class CatalogHome extends JPanel {
@@ -34,7 +35,7 @@ public class CatalogHome extends JPanel {
  private JLabel password;
  private JLabel newThings;
  
- private JPanel searchBarPlace;
+ public static JPanel searchBarPlace;
  private JPanel theLogin;
  private JPanel recentlyAdded;
  
@@ -49,7 +50,7 @@ public class CatalogHome extends JPanel {
    Graphics g;
 	GridBagConstraints gbc = new GridBagConstraints();
   
-   static Book[] books = new Book[InitArrays.fiction.length];
+   //static Book[] books = new Book[InitArrays.fiction.length];
    
   	
   private JFrame mainFrame;
@@ -134,9 +135,7 @@ public class CatalogHome extends JPanel {
   final JTextField searchContent = new JTextField(50);
   searchBarPlace.add(searchContent);
   
-  gbc.fill = GridBagConstraints.HORIZONTAL;
-  gbc.gridx = 1;
-  gbc.gridy = 5;
+
   searchBarPlace.add(search, gbc);
   gbc.fill = GridBagConstraints.CENTER;
   gbc.gridx = 2;
@@ -196,9 +195,7 @@ public class CatalogHome extends JPanel {
   /////MAKAELA/////
   login.addActionListener(new ActionListener() {
    public void actionPerformed(ActionEvent e) {
-    //theLogin.removeNotify();
-    String loginInfo = usernameInput.getText() + "!!! Hey, hey, " + usernameInput.getText() + "!! Hi!!!";
-    user.setText(loginInfo);
+   userInteraction mm = new userInteraction();
    }
   });
   
