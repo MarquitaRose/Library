@@ -39,10 +39,13 @@ public class userInteraction extends JFrame{
    	private JFrame ofAwesomness;
    	private JPanel withUser;
    	private JPanel theButtons;
+   	private JPanel buttonFunctions;
    	private JButton itemCheckIn;
    	private JButton itemCheckOut;
    	private JButton addItem;
    	private static JLabel bookSearch;
+   	
+   	JTextField itemInput;
     
 	//Create a scanner object each for text and numbers
 	private static Scanner tInput = new Scanner(System.in);
@@ -60,6 +63,7 @@ public class userInteraction extends JFrame{
 		
 		  userInteraction mm = new userInteraction();
 		 mm.menu();
+		mm.JPanelAddBooks();
 
 		
 		//Initialize Books
@@ -68,7 +72,7 @@ public class userInteraction extends JFrame{
 			books[i] = new Book();
 		
 		//Add the books
-		addBooks();
+		//addBooks();
 		
 		//Menu
 		//menu();
@@ -96,9 +100,12 @@ public void preparingJPanel(){
 	withUser = new JPanel();
 	withUser.setBackground(Color.green);
 	
+	buttonFunctions = new JPanel();
+	
 	
 	ofAwesomness.add(theButtons);
 	ofAwesomness.add(withUser); 
+	ofAwesomness.add(buttonFunctions);
 	ofAwesomness.setVisible(true);
 }
 
@@ -121,7 +128,7 @@ public void menu(){
 		addItem = new JButton("Donate!");
 		addItem.addActionListener(new ActionListener() {
 			   public void actionPerformed(ActionEvent e){
-			 addBooks();
+			 //JPanelAddBooks();
 			   }
 			  });
 		
@@ -167,14 +174,30 @@ public void menu(){
 		
 	}
 	
-	/*public void JPanelAddBooks(){
-		JLabel enterBooks = new JLabel("How many books do you want to enter?");
-		Font enterBooksFont = new Font ("Serif", Font.PLAIN, 30);
-		enterBooks.setFont(enterBooksFont);
-		withUser.add(enterBooks);
-	}*/
+	public void JPanelAddBooks(){
 	
-	public static void addBooks()
+		final JLabel stuffs = new JLabel("");
+		
+		itemInput = new JTextField("Book's Name");
+		buttonFunctions.add(itemInput);
+		
+		
+		final JTextField itemAuthorInput = new JTextField("Author's name");
+		buttonFunctions.add(itemAuthorInput);
+		
+	JButton enter = new JButton("Enter");
+	enter.addActionListener(new ActionListener() {
+		   public void actionPerformed(ActionEvent e){
+		 String thank = "Thank you for your donation!";
+		 stuffs.setText(thank);
+		   }
+		  });
+		
+	buttonFunctions.add(enter);
+		
+	}
+	
+	/*public static void addBooks()
 	{
 		
 		
@@ -182,10 +205,7 @@ public void menu(){
 		
 		int b = 0;
 		
-		for (b = 0; b < books.length && !books[b].getTitle().equals(""); b++)
-		{
-			
-		}
+		
 		lastBook = b;
 		System.out.println(lastBook);
 		
@@ -199,7 +219,7 @@ public void menu(){
 		}
 		lastBook = b+numBooks;
 
-	}
+	}*/
 	
 	private static void displayBooks()
 	{
