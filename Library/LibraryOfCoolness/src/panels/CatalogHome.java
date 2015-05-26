@@ -3,11 +3,7 @@ package panels;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
-import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,19 +17,12 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Library.Book;
-//import Library.InitArrays;
-import Library.Library;
-import Library.userInteraction;
-
 @SuppressWarnings("serial")
 public class CatalogHome extends JPanel {
  
  
  private JLabel statusLabel;
- private JLabel password;
- 
- public static JPanel searchBarPlace;
+ public  JPanel searchBarPlace;
  private JPanel theLogin;
  private JPanel recentlyAdded;
  
@@ -44,31 +33,12 @@ public class CatalogHome extends JPanel {
  Toolkit tk = Toolkit.getDefaultToolkit();
 	int SWidth = ((int) tk.getScreenSize().getWidth());
 	int SHeight = ((int) tk.getScreenSize().getHeight());
- 
-   Graphics g;
-	GridBagConstraints gbc = new GridBagConstraints();
-  
-   static Book[] books = new Book[Book.fiction.length];
-   
   	
   private JFrame mainFrame;
  
  public CatalogHome(){
-  //paint(g);
   prepareGUI(); 
  }
- 
- 
- public void paint(Graphics g){
-  Graphics2D g2 = (Graphics2D)g;
-   	g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-   	RenderingHints.VALUE_ANTIALIAS_ON);
-   	Font firstFont = new Font("old english mt", Font.PLAIN, 96);
-   	g2.setFont(firstFont);
-   	g2.drawString("Text", 40, 120);
- }
- 
-
  
  public static void main(String[] args){
   CatalogHome swingControlDemo = new CatalogHome();
@@ -76,11 +46,9 @@ public class CatalogHome extends JPanel {
  }
  
  private void prepareGUI(){
-	 
-  /////Creates a new JFrame\\\\\
+  /////Creates a new JFrame, determines it's layout and size\\\\\
    	mainFrame = new JFrame("Library of Coolness");
    	mainFrame.setSize(SWidth, SHeight);
-   	mainFrame.setBackground(Color.magenta);
    	mainFrame.setLayout(new GridLayout(4, 8));
   	
    	mainFrame.addWindowListener(new WindowAdapter() {
@@ -89,61 +57,61 @@ public class CatalogHome extends JPanel {
       	}    	
    	});	
   
-   	/////Adds new JLabels\\\\\
-   	statusLabel = new JLabel("");  
-   	password = new JLabel("");
-  
    	
  	/////Adding and designing new JPanels\\\\\
    	searchBarPlace = new JPanel();
-   searchBarPlace.setBackground(Color.green);
+    searchBarPlace.setBackground(Color.green);
    	theLogin = new JPanel();
    	recentlyAdded = new JPanel();
-   	recentlyAdded.setBackground(Color.cyan);
+   	recentlyAdded.setBackground(Color.white);
+   	JPanel meh = new JPanel();
+   	meh.setBackground(Color.white);
    	
    	
    	/////Adds the Labels and JPanels into the JFrame\\\\\
    	mainFrame.add(theLogin);
    	mainFrame.add(searchBarPlace);
    	mainFrame.add(recentlyAdded);
-   	mainFrame.add(statusLabel);
-   	mainFrame.add(password);
+   	mainFrame.add(meh);
    	mainFrame.setVisible(true); 
 	}
 
  
  public void textfieldLayout(){
 	 /////Creates and adds search bar\\\\\
-  JLabel searchBar = new JLabel("", JLabel.CENTER);
-  searchBarPlace.add(searchBar);
-  
   final JTextField searchContent = new JTextField(50);
   searchBarPlace.add(searchContent);
+  /////adds search button to jPanel\\\\\
   searchBarPlace.add(search);
   
+  statusLabel = new JLabel("");
   searchBarPlace.add(statusLabel);
  
-  /////Sets font and background for search button\\\\\
+  /////Sets font for search button\\\\\
   Font searchFont = new Font("old english text mt", Font.BOLD, 17);
   search.setFont(searchFont);
-  search.setBackground(Color.white);
   
   /////Adds search button and sets what will happen when the button
                     ///// is clicked\\\\\
   search.addActionListener(new ActionListener() {
    public void actionPerformed(ActionEvent e){
-    String data= "You searched \"" + searchContent.getText() + "\"";
+   /////adds this string ("you searched" plus user's input) into a JLabel which is added to JPanel\\\\\
+	String data= "You searched \"" + searchContent.getText() + "\".";
     statusLabel.setText(data);
+    
+    //////adds JLabel telling the user to log in first\\\\\
+    JLabel mustLogIn = new JLabel("You must log in to check out this book.");
+    searchBarPlace.add(mustLogIn);
    }
   });
  
   /////Creates and adds the text reading "username" and sets the font\\\\\
   JLabel username = new JLabel("Username:");
   Font wordUsername = new Font("old english text mt", Font.BOLD, 15);
-  username.setFont(wordUsername);;
+  username.setFont(wordUsername);
   theLogin.add(username);
   
- /////Adds text field where the username is written\\\\\
+ /////Adds text field where the user inputs the username\\\\\
  final JTextField usernameInput = new JTextField(10);
   theLogin.add(usernameInput);
   
@@ -153,32 +121,23 @@ public class CatalogHome extends JPanel {
   passcode.setFont(wordPassword);
   theLogin.add(passcode);
   
-  /////adds text field where the password is written\\\\\
+  /////adds text field where the user inputs the password\\\\\
   final JTextField passwordInput = new JPasswordField(10);
   theLogin.add(passwordInput);
   
  /////adds the login button and sets font\\\\\
   theLogin.add(login);
-  //theLogin.add(user);
-  
   Font logButtonFont = new Font("old english text mt", Font.BOLD, 15);
   login.setFont(logButtonFont);
+  
+  
   /////Sets the function of the login button/////
   login.addActionListener(new ActionListener() {
    public void actionPerformed(ActionEvent e) {
+   @SuppressWarnings("unused")
    userInteraction mm = new userInteraction();
-   mm.JPanelAddBooks();
    }
   });
-  
-  /////creates JLabel reading "recently added" and sets font\\\\\
-  JLabel newThings = new JLabel("RECENTLY ADDED"); 
-  Font recentJLabel = new Font("serif", Font.PLAIN, 30);
-  newThings.setFont(recentJLabel);
- recentlyAdded.add(newThings);
-  mainFrame.setVisible(true);
-  
-  
  }
 
-}
+ }

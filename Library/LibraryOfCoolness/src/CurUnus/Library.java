@@ -1,4 +1,4 @@
-package Library;
+package CurUnus;
 
 import java.util.Scanner;
 

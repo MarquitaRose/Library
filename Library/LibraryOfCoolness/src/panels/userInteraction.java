@@ -1,4 +1,4 @@
-package Library;
+package panels;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Scanner;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,23 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
-
-
 @SuppressWarnings("serial")
 public class userInteraction extends JFrame{
-	static int maxCustomers = 100;
-	static int lastCustomer = 0;
-	
-	static int maxBooks = 100;
-	static int lastBook = 0;
-	static Customer[] customers = new Customer[maxCustomers];
-    static int answer = 0;
-   
-    private static Scanner tInput = new Scanner(System.in);
-	private static Scanner nInput = new Scanner(System.in);
-	
-	
     Toolkit tk = Toolkit.getDefaultToolkit();
    	int SWidth = ((int) tk.getScreenSize().getWidth());
    	int SHeight = ((int) tk.getScreenSize().getHeight());
@@ -46,41 +31,35 @@ public class userInteraction extends JFrame{
    	private JButton itemCheckOut;
    	private JButton donateButton;
    	private JButton search;
-   	private JButton newSearch;
    	private JLabel alreadyHere;
    	private JLabel checkOutNow;
    	private JLabel checkInNow;
    	private JLabel statusLabel;
    	JTextField searchContent;
+
+    Font englishText = new Font("old english text mt", Font.BOLD, 15);
+    
    	boolean checkOut = false;
-   	
-   	public static String[] fiction = new String[]{
-        "The Fault in our Stars", "Speak", "Wintergirls", "The Impossible Knife of Memory", 
-        "Fangirl", "Eleanor and Park", "Looking for Alaska", "An Abundance of Katherines", "Paper Towns",
-};
-   	
+   
+	ArrayList<String> nuevoBook = new ArrayList<String>();
+	ArrayList<String> nuevoAuthor = new ArrayList<String>();
 	
 	public static void main(String[] args) {
 		/////Adds JPanel mm\\\\\
+		@SuppressWarnings("unused")
 		userInteraction mm = new userInteraction();
-		mm.JPanelAddBooks();
 	}
 	
 	public userInteraction(){
 		preparingJPanel();
 		searchBar();
-		addCustomer();
+		JPanelAddBooks();
 	}
 	
 public void preparingJPanel(){
 	/////Creates new JFrame and adjusts its size and layout\\\\\
-	//for (int i = 0; i < fiction.length-1; i++ )
-	  //{
-	   //System.out.println(fiction[i]);
-	  //} 
-	
 	ofAwesomness = new JFrame();
-	 ofAwesomness.setLayout(new GridLayout(4, 8));
+	ofAwesomness.setLayout(new GridLayout(4, 8));
 	ofAwesomness.setSize(SWidth, SHeight);
 	ofAwesomness.addWindowListener(new WindowAdapter() {
       	public void windowClosing(WindowEvent windowEvent){
@@ -112,38 +91,39 @@ public void preparingJPanel(){
 		  searchContent = new JTextField(50);
 		  withUser.add(searchContent);
 		  search = new JButton("Search");
+		  /////sets font of the search button and adds the button to the JPanel\\\\\
+		  search.setFont(englishText);
 		  withUser.add(search);
 		  
-		  /////Adds JLabel that search will be stored into\\\\\
+		  /////Adds JLabel that the search will be stored into\\\\\
 		  statusLabel = new JLabel("");
 		  withUser.add(statusLabel);
-		 
-		  /////Sets font and background for search button\\\\\
-		  Font searchFont = new Font("old english text mt", Font.BOLD, 17);
-		  withUser.setFont(searchFont);
 		  
 		  /////Adds search button and sets what will happen when the button
 		                    ///// is clicked\\\\\
 		  search.addActionListener(new ActionListener() {
 		   public void actionPerformed(ActionEvent e){
-		    String data= "You searched \"" + searchContent.getText() + "\"";
+		    String data= "||You searched \"" + searchContent.getText() + "\"||";
 		    statusLabel.setText(data);
 		    
 		    /////adds check in button and decides it's function\\\\\
 		    itemCheckIn = new JButton("Check in");
+		    itemCheckIn.setFont(englishText);
 			itemCheckIn.addActionListener(new ActionListener() {
 				   public void actionPerformed(ActionEvent e){
 					   checkin();
 				   }
 				  });
 			
-			withUser.add(itemCheckIn, JPanel.CENTER_ALIGNMENT);
+			withUser.add(itemCheckIn);
 			
 			/////adds check out button and decides it's function\\\\\
 			itemCheckOut = new JButton("Check out");
+			itemCheckOut.setFont(englishText);
 			itemCheckOut.addActionListener(new ActionListener() {
 				   public void actionPerformed(ActionEvent e){
 					  checkout();
+					  withUser.remove(statusLabel);
 				   }
 				  });
 			
@@ -153,51 +133,6 @@ public void preparingJPanel(){
 		  });
 		 
 		  ofAwesomness.setVisible(true);
-		  
-		  findBook();
-	}
-	
-	private static void addCustomer()
-	{
-		int numCusts = nInput.nextInt();
-		
-		int c = 0;
-		
-		for (c = 0; c < customers.length && !customers[c].getFName().equals(""); c++)
-		{
-			
-		}
-		lastBook = c;
-		System.out.println(lastBook);
-		
-		for (int i = lastCustomer; i < numCusts+lastCustomer && i < maxCustomers; i++ )
-		{
-			System.out.println("Enter the First name");
-			customers[i].setFName(tInput.nextLine());
-			System.out.println("the Last Name?");
-			customers[i].setLName(tInput.nextLine());
-			System.out.println("ID?");
-			customers[i].setID((long)Math.random()*9999);
-			
-		}
-		lastBook = c+numCusts;
-
-	
-	
-	} 
-	
-	public int findBook()
-	{
-		/////creates and adds JLabel where the user will input the book\\\\\
-		int i;
-		String adios = searchContent.getText();	
-		
-		for ( i = 0; i < fiction.length-1; i++ )
-		  {
-		   System.out.println(fiction[i].equalsIgnoreCase(adios));
-		  }
-	
-		return 0;
 	}
 	
 	public void checkin()
@@ -217,8 +152,11 @@ public void preparingJPanel(){
 		withUser.add(newSearch);
 		newSearch.addActionListener(new ActionListener() {
 			   public void actionPerformed(ActionEvent e){
+				  //////JPanel goes back to the way it was before the check in button was pressed\\\\\
+				   /////calls searchBar method and removes the JLabels added\\\\\
 				  searchBar();
 				  withUser.remove(newSearch);
+				  withUser.remove(alreadyHere);
 			   }
 			  });
 		/////If the book is checked out, it is now no longer checked out\\\\\
@@ -229,9 +167,11 @@ public void preparingJPanel(){
 		/////if the book isn't checked out, the user will receive a message\\\\\
 		else
 			{
-			alreadyHere = new JLabel("This book is already checked in.");
+			alreadyHere = new JLabel("This book is already checked in."
+					+ "                      ");
 			withUser.add(alreadyHere);
 		}
+		 for(int i = 0; i<= 7; i++) System.out.println("");
 		ofAwesomness.setVisible(true);
 	}
 	
@@ -249,17 +189,24 @@ public void preparingJPanel(){
 		/////Adds button that will return the user to the page he or she was at before checking out
 									///// the book\\\\\
 		final JButton newSearch = new JButton("Back");
+		newSearch.setFont(englishText);
 		withUser.add(newSearch);
 		newSearch.addActionListener(new ActionListener() {
 			   public void actionPerformed(ActionEvent e){
+				   //////JPanel goes back to the way it was before the check in button was pressed\\\\\
+				   /////calls searchBar method and removes the JLabels added\\\\\
 				  searchBar();
 				  withUser.remove(newSearch);
+				  withUser.remove(checkOutNow);
+				  withUser.remove(checkInNow);
+			
 			   }
 			  });
 		
 		/////if the book is not checked out, the user will be allowed to check it out\\\\\
 		if (checkOut == false){
-			String titleSearched = searchContent.getText() + " is now checked out";
+			String titleSearched = searchContent.getText() + " is now checked out.         "
+					+ "                         ";
 			checkOutNow = new JLabel(titleSearched);
 			withUser.add(checkOutNow);
 			checkOut = true;
@@ -268,18 +215,24 @@ public void preparingJPanel(){
 		///// otherwise, if the book is checked out, the user will get a message saying that 
 		////// the book is checked out and to try checking it out at another time later\\\\\
 		else{
-			checkInNow = new JLabel(searchContent.getText() + " has already been checked out. Check again later :)");
+			String outoutout = searchContent.getText() + " has already been checked out."
+					+ "          ";
+			checkInNow = new JLabel(outoutout);
 			withUser.add(checkInNow);
+				  for(int i = 0; i<=10; i++) System.out.println("");
 		}
+		 for(int i = 0; i<= 7; i++) System.out.println("");
 		ofAwesomness.setVisible(true);
 	}
 	
 	public void JPanelAddBooks(){
 		/////Creates & adds donate button and decides it's function\\\\
 		donateButton = new JButton("Donate!");
+		donateButton.setFont(englishText);
 		buttonFunctions.add(donateButton);
 		donateButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				/////refers to method donateQuestion\\\\\
 				donateQuestion();
 			}
 				}); 
@@ -305,13 +258,14 @@ public void preparingJPanel(){
 	enter.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e){
 			/////program re-draws everything written in class userInteraction\\\\\
+			@SuppressWarnings("unused")
 			userInteraction mm = new userInteraction();
-			mm.JPanelAddBooks();
 		
 			/////stores inputs\\\\\
 		String newBook = itemInput.getText();
 		String booksAuthor = itemAuthorInput.getText();
-		System.out.println(newBook + " by " +booksAuthor);
+		nuevoBook.add(newBook);
+		nuevoAuthor.add(booksAuthor);
 		}
 	});
 	

@@ -1,4 +1,4 @@
-package Library;
+package CurUnus;
 
 public class Customer implements Person {
 

@@ -18,9 +18,11 @@ import javax.swing.JPanel;
  
 @SuppressWarnings("serial")
 public class JFrameDesign extends JFrame {
-  Toolkit tk = Toolkit.getDefaultToolkit();
- int SWidth = ((int) tk.getScreenSize().getWidth());
+	/////uses toolkit to determine the width and height of the computer screen\\\\\
+	Toolkit tk = Toolkit.getDefaultToolkit();
+	int SWidth = ((int) tk.getScreenSize().getWidth());
 	int SHeight = ((int) tk.getScreenSize().getHeight());
+
  public JFrameDesign(){
   initUI();
  }
@@ -39,12 +41,12 @@ public class JFrameDesign extends JFrame {
  private void initUI(){
   /////Creates new JPanel\\\\\
   DrawStuff panel = new DrawStuff();
-  //panel.setBackground(Color.blue);
   add(panel);
   pack();
   panel.setVisible(true);
   panel.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
   
+  /////sets title, size, and color of the JPanel panel\\\\\
   setTitle("Library of Coolness");
  	setSize(SWidth, SHeight);
  	panel.setBackground(Color.white);
@@ -61,7 +63,7 @@ public class JFrameDesign extends JFrame {
 
  
 	
-	/////Opens JFrame homie (which contains everything from the class CatalogHome) when button is clicked\\\\\
+	/////Determines the funciton of button 'welcome'\\\\\
   welcome.addActionListener(new ActionListener(){
    @Override
    public void actionPerformed(ActionEvent event){
