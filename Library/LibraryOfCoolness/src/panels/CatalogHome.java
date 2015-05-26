@@ -31,9 +31,7 @@ public class CatalogHome extends JPanel {
  
  
  private JLabel statusLabel;
- private JLabel user;
  private JLabel password;
- private JLabel newThings;
  
  public static JPanel searchBarPlace;
  private JPanel theLogin;
@@ -50,7 +48,7 @@ public class CatalogHome extends JPanel {
    Graphics g;
 	GridBagConstraints gbc = new GridBagConstraints();
   
-   //static Book[] books = new Book[InitArrays.fiction.length];
+   static Book[] books = new Book[Book.fiction.length];
    
   	
   private JFrame mainFrame;
@@ -68,21 +66,17 @@ public class CatalogHome extends JPanel {
    	Font firstFont = new Font("old english mt", Font.PLAIN, 96);
    	g2.setFont(firstFont);
    	g2.drawString("Text", 40, 120);
-  
-  /*for (int i = 0; i < Library.books.length-1; i++ )
-  {
-   System.out.println(books[i].getTitle() + ", by " + books[i].getAuthor());
-  }*/
-   	
  }
+ 
 
  
  public static void main(String[] args){
   CatalogHome swingControlDemo = new CatalogHome();
-  swingControlDemo.textfieldLayout();
+  swingControlDemo.textfieldLayout(); 
  }
  
  private void prepareGUI(){
+	 
   /////Creates a new JFrame\\\\\
    	mainFrame = new JFrame("Library of Coolness");
    	mainFrame.setSize(SWidth, SHeight);
@@ -97,9 +91,8 @@ public class CatalogHome extends JPanel {
   
    	/////Adds new JLabels\\\\\
    	statusLabel = new JLabel("");  
-   	user = new JLabel();
    	password = new JLabel("");
-   	newThings = new JLabel();
+  
    	
  	/////Adding and designing new JPanels\\\\\
    	searchBarPlace = new JPanel();
@@ -113,7 +106,6 @@ public class CatalogHome extends JPanel {
    	mainFrame.add(theLogin);
    	mainFrame.add(searchBarPlace);
    	mainFrame.add(recentlyAdded);
-   	mainFrame.add(user);
    	mainFrame.add(statusLabel);
    	mainFrame.add(password);
    	mainFrame.setVisible(true); 
@@ -121,92 +113,72 @@ public class CatalogHome extends JPanel {
 
  
  public void textfieldLayout(){
-  
-  gbc.fill = GridBagConstraints.CENTER;
-  //gbc.gridwidth = 8;
-  //gbc.gridheight = 10;
-  
-  gbc.gridx = 4;
-  gbc.gridy = 4;
-  
+	 /////Creates and adds search bar\\\\\
   JLabel searchBar = new JLabel("", JLabel.CENTER);
-  searchBarPlace.add(searchBar, gbc);
+  searchBarPlace.add(searchBar);
   
   final JTextField searchContent = new JTextField(50);
   searchBarPlace.add(searchContent);
+  searchBarPlace.add(search);
   
-
-  searchBarPlace.add(search, gbc);
-  gbc.fill = GridBagConstraints.CENTER;
-  gbc.gridx = 2;
-  searchBarPlace.add(statusLabel, gbc);
-  /////MAKAELA/////
+  searchBarPlace.add(statusLabel);
+ 
+  /////Sets font and background for search button\\\\\
   Font searchFont = new Font("old english text mt", Font.BOLD, 17);
   search.setFont(searchFont);
   search.setBackground(Color.white);
-  /////MAKAELA/////
+  
+  /////Adds search button and sets what will happen when the button
+                    ///// is clicked\\\\\
   search.addActionListener(new ActionListener() {
    public void actionPerformed(ActionEvent e){
     String data= "You searched \"" + searchContent.getText() + "\"";
-    
     statusLabel.setText(data);
-    
-    //data.setFont(dataFont);
    }
   });
  
-  gbc.gridx = 4;
-  gbc.gridy = 0;
+  /////Creates and adds the text reading "username" and sets the font\\\\\
   JLabel username = new JLabel("Username:");
-  /////MAKAELA/////
   Font wordUsername = new Font("old english text mt", Font.BOLD, 15);
   username.setFont(wordUsername);;
-  /////MAKAELA/////
-  gbc.fill = GridBagConstraints.BELOW_BASELINE_TRAILING;
-  theLogin.add(username, gbc);
+  theLogin.add(username);
   
-  gbc.gridx = 5;
-  gbc.gridy = 0;
-  final JTextField usernameInput = new JTextField(10);
-  theLogin.add(usernameInput, gbc);
+ /////Adds text field where the username is written\\\\\
+ final JTextField usernameInput = new JTextField(10);
+  theLogin.add(usernameInput);
   
-  gbc.gridx = 6;
-  gbc.gridy = 0;
-  /////MAKAELA/////
+  /////Creates and adds the text reading "password" and sets the font\\\\\
   JLabel passcode = new JLabel("Password:", JLabel.LEFT);
   Font wordPassword = new Font("old english text mt", Font.BOLD, 15);
   passcode.setFont(wordPassword);
-  /////MAKAELA/////
-  theLogin.add(passcode, gbc);
+  theLogin.add(passcode);
   
+  /////adds text field where the password is written\\\\\
   final JTextField passwordInput = new JPasswordField(10);
-  gbc.gridx = 7;
-  gbc.gridy = 0;
-  theLogin.add(passwordInput, gbc);
+  theLogin.add(passwordInput);
   
-  gbc.gridx= 6;
-  gbc.gridy = 2;
-  theLogin.add(login, gbc);
-  gbc.fill = GridBagConstraints.CENTER;
-  theLogin.add(user, gbc);
-  /////MAKAELA////
+ /////adds the login button and sets font\\\\\
+  theLogin.add(login);
+  //theLogin.add(user);
+  
   Font logButtonFont = new Font("old english text mt", Font.BOLD, 15);
   login.setFont(logButtonFont);
-  /////MAKAELA/////
+  /////Sets the function of the login button/////
   login.addActionListener(new ActionListener() {
    public void actionPerformed(ActionEvent e) {
    userInteraction mm = new userInteraction();
+   mm.JPanelAddBooks();
    }
   });
   
+  /////creates JLabel reading "recently added" and sets font\\\\\
   JLabel newThings = new JLabel("RECENTLY ADDED"); 
   Font recentJLabel = new Font("serif", Font.PLAIN, 30);
   newThings.setFont(recentJLabel);
  recentlyAdded.add(newThings);
-  //controlPanel.add(daPanel);
   mainFrame.setVisible(true);
   
   
  }
- 
+
 }
